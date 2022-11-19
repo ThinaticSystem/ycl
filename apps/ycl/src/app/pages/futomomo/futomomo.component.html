@@ -1,21 +1,28 @@
 <p>futomomo works!</p>
 
-<button (click)="putPart('poster')">投稿パーツ表示</button>
+<button (click)="putPart('poster')" mat-button>投稿パーツ表示</button>
 
 <router-outlet name="part1"></router-outlet>
 
-<div id="okotoba-list">
-  <article *ngFor="let okotoba of (okotoba$ | async)?.reverse()">
-    <img [src]="okotoba.user.avatar.imageUrl">
-    <div class="user-id">{{ okotoba.user.id }}</div>
-    <p>{{ okotoba.text }}</p>
-    <div class="actions-area">
-      <button class="reply-button">💬<span class="reply-count">{{ okotoba.replies.length }}</span></button>
-      <button class="spread-button">🔄<span class="spread-count">{{ okotoba.spreads.length }}</span></button>
-      <button class="react-button">⭐<span class="react-count">{{ htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).normal.length }}</span></button>
-      <ng-container *ngFor="let emojiType of htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).withEmoji | keyvalue">
-        <button class="react-button">{{ emojiType.key }}<span class="react-count">{{ emojiType.value.length }}</span></button>
+<cdk-virtual-scroll-viewport itemSize="200" id="okotoba-list" style="background-color:#EEE;height:80%;">
+  <mat-card *cdkVirtualFor="let okotoba of (okotoba$ | async)?.reverse()" style="max-width:30%;margin: auto auto 20px auto;">
+    <mat-card-header>
+      <img [src]="okotoba.user.avatar.imageUrl" mat-card-avatar>
+      <div mat-card-title class="user-id">{{ okotoba.user.id }}</div>
+    </mat-card-header>
+    <mat-card-content>
+      {{ okotoba.text }}
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button class="reply-button">💬<span class="reply-count">{{ okotoba.replies.length }}</span></button>
+      <button mat-button class="spread-button">🔄<span class="spread-count">{{ okotoba.spreads.length }}</span></button>
+      <button mat-button class="react-button">⭐<span
+          class="react-count">{{ htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).normal.length }}</span></button>
+      <ng-container
+        *ngFor="let emojiType of htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).withEmoji | keyvalue">
+        <button mat-button class="react-button">{{ emojiType.key }}<span
+            class="react-count">{{ emojiType.value.length }}</span></button>
       </ng-container>
-    </div>
-  </article>
-</div>
+    </mat-card-actions>
+  </mat-card>
+</cdk-virtual-scroll-viewport>

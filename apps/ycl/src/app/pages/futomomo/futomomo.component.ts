@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ContentService } from '../../service/content.service';
 import { Observable, scan } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button'
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 type Subscribed<T> = T extends Observable<infer R> ? R : never;
 
 @Component({
   selector: 'ycl-futomomo',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, MatCardModule, MatButtonModule, ScrollingModule],
   templateUrl: './futomomo.component.html',
   styleUrls: ['./futomomo.component.scss'],
 })
