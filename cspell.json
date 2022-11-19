@@ -3,11 +3,13 @@
     "ignorePaths": [],
     "dictionaryDefinitions": [],
     "dictionaries": [],
-    "words": [],
+    "words": [
+        "okotoba"
+    ],
     "ignoreWords": [
-      "nrwl",
-      "devkit",
-      "futomomo",
+        "nrwl",
+        "devkit",
+        "futomomo"
     ],
     "import": []
 }
