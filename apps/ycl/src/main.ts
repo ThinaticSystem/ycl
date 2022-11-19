@@ -4,6 +4,8 @@ import { AppComponent } from './app/app.component';
 
 const routes: Routes = [
   { path: 'futomomo', loadComponent: () => import('./app/pages/futomomo/futomomo.component') },
+
+  { path: 'poster', loadComponent: () => import('./app/parts/poster/poster.component') },
 ];
 
 bootstrapApplication(AppComponent, {

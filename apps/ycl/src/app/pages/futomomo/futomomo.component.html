@@ -1,4 +1,9 @@
 <p>futomomo works!</p>
+
+<button (click)="putPart('poster')">投稿パーツ表示</button>
+
+<router-outlet name="part1"></router-outlet>
+
 <div id="okotoba-list">
   <article *ngFor="let okotoba of (okotoba$ | async)?.reverse()">
     <img [src]="okotoba.user.avatar.imageUrl">

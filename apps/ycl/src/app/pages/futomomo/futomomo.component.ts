@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentService } from '../../service/content.service';
 import { Observable, scan } from 'rxjs';
+import { Router, RouterOutlet } from '@angular/router';
 
 type Subscribed<T> = T extends Observable<infer R> ? R : never;
 
 @Component({
   selector: 'ycl-futomomo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './futomomo.component.html',
   styleUrls: ['./futomomo.component.scss'],
 })
@@ -19,14 +20,14 @@ export default class FutomomoComponent {
       scan(
         (prev, now) => [...prev, now],
         [] as Subscribed<ReturnType<typeof this.content.okotoba$>>[]
-      )
+      ),
     );
 
-  constructor(public content: ContentService) {}
+  constructor(private content: ContentService, private router: Router) {}
 
   public htmlFuncs = {
     object: {
-      length: (obj: Record<string, any>) => Object.keys(obj).length,
+      length: (obj: Record<string, unknown>) => Object.keys(obj).length,
     },
     converters: {
       classifyReactsByEmoji: (
@@ -56,4 +57,9 @@ export default class FutomomoComponent {
       },
     },
   };
+
+  public putPart(partType: 'poster') {
+    // this.router.navigate([{ outlets: { part1: [partType] } }], { skipLocationChange: true });
+    this.router.navigate([{ outlets: { part1: partType } }], { skipLocationChange: true });
+  }
 }
