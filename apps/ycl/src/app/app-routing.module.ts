@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
+  { path: 'futomomo', loadComponent: () => import('./pages/futomomo/futomomo.component') },
 ];
 
 @NgModule({
