@@ -17,8 +17,8 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./futomomo.component.scss'],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     DragDropModule,
+    ReactiveFormsModule,
     TimelineComponent,
     PosterComponent,
   ],
@@ -53,10 +53,16 @@ export default class FutomomoComponent implements OnInit, OnDestroy {
       return;
     }
     this.appearParts.push(part);
+    this.saveLayoutConfig();
   }
 
   public removePart(index: number) {
     this.appearParts = this.appearParts.filter((_v, i) => i != index);
+    this.saveLayoutConfig();
+  }
+
+  private saveLayoutConfig() {
+    // TODO
   }
 
   public onDrop(event: CdkDragDrop<typeof this.appearParts>) {

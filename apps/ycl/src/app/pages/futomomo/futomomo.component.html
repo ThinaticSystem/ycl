@@ -1,19 +1,21 @@
-<p>futomomo works!</p>
+<div class="h-screen w-screen grid grid-rows-6">
+  <div cdkDropList [cdkDropListData]="appearParts" (cdkDropListDropped)="onDrop($event)"
+    [cdkDropListSortingDisabled]="!editMode" class="row-span-5 flex flex-row h-full overflow-y-auto">
+    <div *ngFor="let part of appearParts; let i = index" cdkDrag class="w-full">
+      <button *ngIf="editMode" (click)="removePart(i)">閉じる</button>
 
-<button (click)="editMode = !editMode">編集モード</button>
-<div *ngIf="editMode" id="edit-area">
-  <select [formControl]="f_newPart">
-    <option [value]="null" disabled selected>ぜひとも選ぶの</option>
-    <option *ngFor="let part of PartsList" [ngValue]="part">{{ part }}</option>
-  </select>
-</div>
-
-<div cdkDropList [cdkDropListData]="appearParts" (cdkDropListDropped)="onDrop($event)"
-  [cdkDropListSortingDisabled]="!editMode">
-  <div *ngFor="let part of appearParts; let i = index" cdkDrag>
-    <button *ngIf="editMode" (click)="removePart(i)">閉じる</button>
-
-    <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
-    <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
+      <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
+      <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
+    </div>
   </div>
+
+  <footer class="row-span-1">
+    <button (click)="editMode = !editMode">レイアウト編集</button>
+    <div *ngIf="editMode" id="edit-area">
+      <select [formControl]="f_newPart">
+        <option [value]="null" disabled selected>ぜひとも選ぶの</option>
+        <option *ngFor="let part of PartsList" [ngValue]="part">{{ part }}</option>
+      </select>
+    </div>
+  </footer>
 </div>
