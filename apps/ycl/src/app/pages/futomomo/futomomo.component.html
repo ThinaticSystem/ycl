@@ -3,9 +3,11 @@
 <button (click)="addPart('timeline')">タイムライン表示</button>
 <button (click)="addPart('poster')">投稿パーツ表示</button>
 
-<ng-container *ngFor="let part of appearParts; let i = index">
-  <button (click)="removePart(i)">閉じる</button>
+<div cdkDropList [cdkDropListData]="appearParts"  (cdkDropListDropped)="onDrop($event)">
+  <div *ngFor="let part of appearParts; let i = index" cdkDrag>
+    <button (click)="removePart(i)">閉じる</button>
 
-  <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
-  <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
-</ng-container>
+    <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
+    <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
+  </div>
+</div>
