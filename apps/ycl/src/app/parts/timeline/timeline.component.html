@@ -1,0 +1,17 @@
+<p>timeline works!</p>
+
+<div id="okotoba-list">
+  <article *ngFor="let okotoba of (okotoba$ | async)?.reverse()">
+    <img [src]="okotoba.user.avatar.imageUrl">
+    <div class="user-id">{{ okotoba.user.id }}</div>
+    <p>{{ okotoba.text }}</p>
+    <div class="actions-area">
+      <button class="reply-button">💬<span class="reply-count">{{ okotoba.replies.length }}</span></button>
+      <button class="spread-button">🔄<span class="spread-count">{{ okotoba.spreads.length }}</span></button>
+      <button class="react-button">⭐<span class="react-count">{{ htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).normal.length }}</span></button>
+      <ng-container *ngFor="let emojiType of htmlFuncs.converters.classifyReactsByEmoji(okotoba.reacts).withEmoji | keyvalue">
+        <button class="react-button">{{ emojiType.key }}<span class="react-count">{{ emojiType.value.length }}</span></button>
+      </ng-container>
+    </div>
+  </article>
+</div>
