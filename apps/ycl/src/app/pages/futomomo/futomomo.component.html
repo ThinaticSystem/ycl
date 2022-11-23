@@ -1,11 +1,17 @@
 <p>futomomo works!</p>
 
-<button (click)="addPart('timeline')">タイムライン表示</button>
-<button (click)="addPart('poster')">投稿パーツ表示</button>
+<button (click)="editMode = !editMode">編集モード</button>
+<div *ngIf="editMode" id="edit-area">
+  <select [formControl]="f_newPart">
+    <option [value]="null" disabled selected>ぜひとも選ぶの</option>
+    <option *ngFor="let part of PartsList" [ngValue]="part">{{ part }}</option>
+  </select>
+</div>
 
-<div cdkDropList [cdkDropListData]="appearParts"  (cdkDropListDropped)="onDrop($event)">
+<div cdkDropList [cdkDropListData]="appearParts" (cdkDropListDropped)="onDrop($event)"
+  [cdkDropListSortingDisabled]="!editMode">
   <div *ngFor="let part of appearParts; let i = index" cdkDrag>
-    <button (click)="removePart(i)">閉じる</button>
+    <button *ngIf="editMode" (click)="removePart(i)">閉じる</button>
 
     <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
     <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
