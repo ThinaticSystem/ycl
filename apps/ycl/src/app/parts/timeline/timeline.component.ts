@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, scan } from 'rxjs';
-import { ContentService } from '../../service/content.service';
+import { ContentService } from '../../services/content.service';
 
 type Subscribed<T> = T extends Observable<infer R> ? R : never;
 
