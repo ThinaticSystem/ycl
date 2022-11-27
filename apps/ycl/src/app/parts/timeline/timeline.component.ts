@@ -42,7 +42,7 @@ export default class TimelineComponent {
         };
 
         for (const react of reacts) {
-          if (react.emoji || react.emoji === '') {
+          if (react.emoji !== null) {
             if (!temp.withEmoji[react.emoji]) {
               temp.withEmoji[react.emoji] = [];
             }
