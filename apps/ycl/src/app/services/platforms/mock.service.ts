@@ -3,6 +3,8 @@ import { faker } from '@faker-js/faker';
 import { interval, map } from 'rxjs';
 import { PlatForm } from './platform';
 
+// リトライ・死活監視はこの層で行う
+
 @Injectable({
   providedIn: 'root',
 })
@@ -60,5 +62,9 @@ export class MockService implements PlatForm {
         ].filter(() => Math.random() < 0.2),
       }))
     );
+  }
+
+  post(text: string) {
+    console.log(`[MockPlatform]Post:${text}`);
   }
 }

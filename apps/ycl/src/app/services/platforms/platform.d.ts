@@ -2,7 +2,8 @@ import { Observable } from 'rxjs';
 
 // Platformクラスの定義
 interface PlatForm {
-  okotoba$: () => Observable<Okotoba>;
+  okotoba$(): Observable<Okotoba>;
+  post(text: string): void;
 }
 
 interface Okotoba {
