@@ -12,7 +12,7 @@ import { Subscribed } from '../../utils/utility-types';
   styleUrls: ['./timeline.component.scss'],
 })
 export default class TimelineComponent {
-  public okotoba$ = this.platform
+  public okotobas$ = this.platform
     .okotoba$('Mock')
     .pipe(
       scan(

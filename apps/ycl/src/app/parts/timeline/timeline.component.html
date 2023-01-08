@@ -1,5 +1,5 @@
 <div class="h-full w-full">
-  <article *ngFor="let okotoba of (okotoba$ | async)?.reverse()" class="flex">
+  <article *ngFor="let okotoba of (okotobas$ | async)?.reverse()" class="flex">
     <div class="left">
       <img [src]="okotoba.user.avatar.imageUrl">
       <div class="actions-area">
