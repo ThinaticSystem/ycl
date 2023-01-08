@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Okotoba, Platform } from './platforms/platform';
+import { Notification, NotificationKind, Okotoba, Platform } from './platforms/platform';
 import { MisskeyService } from './platforms/misskey.service';
 import { MockService } from './platforms/mock.service';
 import { Observable } from 'rxjs';
@@ -27,7 +27,11 @@ export class PlatformService {
     return this.platformOf(type).okotoba$();
   }
 
-  public post(type: PlatformName, text: string) {
+  public notification$(type: PlatformName): Observable<Notification<NotificationKind>> {
+    return this.platformOf(type).notification$();
+  }
+
+  public post(type: PlatformName, text: string): void {
     return this.platformOf(type).post(text);
   }
 }
