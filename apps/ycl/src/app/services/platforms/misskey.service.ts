@@ -10,5 +10,8 @@ export class MisskeyService implements Platform {
     return of<any>(null); // TODO
   }
 
-  post(text: string) {}
+  post(text: string) {
+    // todo
+    text;
+  }
 }
