@@ -8,4 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
 })
-export class NotificationComponent {}
+export default class NotificationComponent {}
