@@ -1,1 +1,28 @@
 <p>notification works!</p>
+<ol>
+  <ng-container *ngIf="notifications$ | async as notifications">
+    <li *ngFor="let item of notifications.reverse()">
+      <!-- リアクション -->
+      <ng-container *ngSwitchCase="'react'">
+        <ng-container *ngTemplateOutlet="type; context: item"></ng-container>
+      </ng-container>
+      <!-- Renote -->
+      <ng-container *ngSwitchCase="'spread'">
+        <ng-container *ngTemplateOutlet="type; context: item"></ng-container>
+      </ng-container>
+      <!-- フォロー -->
+      <ng-container *ngSwitchCase="'follow'">
+        <ng-container *ngTemplateOutlet="type; context: item"></ng-container>
+      </ng-container>
+
+      <!-- テンプレート定義 -->
+      <ng-template #type let-type="type">
+        <ng-container [ngSwitch]="type">
+          <p *ngSwitchCase="'react'">リアクションやわ</p>
+          <p *ngSwitchCase="'spread'">Renoteやわ</p>
+          <p *ngSwitchCase="'follow'">フォローされやわ</p>
+        </ng-container>
+      </ng-template>
+    </li>
+  </ng-container>
+</ol>

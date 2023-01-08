@@ -5,6 +5,7 @@
       <button *ngIf="editMode" (click)="removePart(i)">閉じる</button>
 
       <ycl-timeline *ngIf="part === 'timeline'"></ycl-timeline>
+      <ycl-notification *ngIf="part === 'notification'"></ycl-notification>
       <ycl-poster *ngIf="part === 'poster'"></ycl-poster>
     </div>
   </div>

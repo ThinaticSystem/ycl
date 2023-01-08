@@ -9,6 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
+import NotificationComponent from '../../parts/notification/notification.component';
 
 @Component({
   selector: 'ycl-futomomo',
@@ -20,12 +21,13 @@ import { Subject, takeUntil } from 'rxjs';
     DragDropModule,
     ReactiveFormsModule,
     TimelineComponent,
+    NotificationComponent,
     PosterComponent,
   ],
 })
 export default class FutomomoComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject<null>();
-  readonly PartsList = ['timeline', 'poster'] as const;
+  readonly PartsList = ['timeline', 'notification', 'poster'] as const;
 
   public appearParts: typeof this.PartsList[number][] = [];
   public editMode = false;
