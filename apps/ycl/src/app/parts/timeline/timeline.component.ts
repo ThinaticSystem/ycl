@@ -13,14 +13,13 @@ type Subscribed<T> = T extends Observable<infer R> ? R : never;
   styleUrls: ['./timeline.component.scss'],
 })
 export default class TimelineComponent {
-
   public okotoba$ = this.platform
     .okotoba$('Mock')
     .pipe(
       scan(
         (prev, now) => [...prev, now],
         [] as Subscribed<ReturnType<typeof this.platform.okotoba$>>[]
-      ),
+      )
     );
 
   constructor(private platform: PlatformService) {}
