@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
-import { interval, map } from 'rxjs';
-import { Platform } from './platform';
+import { interval, map, Observable } from 'rxjs';
+import { Notification, NotificationKind, Platform } from './platform.d';
 
 // リトライ・死活監視はこの層で行う
 
@@ -61,6 +61,35 @@ export class MockService implements Platform {
           },
         ].filter(() => Math.random() < 0.2),
       }))
+    );
+  }
+
+  notification$(): Observable<Notification<NotificationKind>> {
+    const genReactNotification = (): Notification<'react'> => ({
+      type: 'react',
+      okotobaId: faker.datatype.uuid(),
+    });
+    const genSpreadNotification = (): Notification<'spread'> => ({
+      type: 'spread',
+      state: faker.datatype.boolean(),
+      okotobaId: faker.datatype.uuid(),
+    });
+    const genFollowNotification = (): Notification<'follow'> => ({
+      type: 'follow',
+      userId: '',
+    });
+
+    return interval(3000).pipe(
+      map(() => {
+        const rand = Math.random();
+        return rand < 0.6
+          ? genReactNotification()
+          : rand < 0.8
+          ? genSpreadNotification()
+          : rand <= 1
+          ? genFollowNotification()
+          : genFollowNotification(); // never
+      })
     );
   }
 

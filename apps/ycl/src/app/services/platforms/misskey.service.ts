@@ -10,6 +10,10 @@ export class MisskeyService implements Platform {
     return of<any>(null); // TODO
   }
 
+  notification$() {
+    return of<any>(null);
+  }
+
   post(text: string) {
     // todo
     text;
