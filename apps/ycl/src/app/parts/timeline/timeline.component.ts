@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, scan } from 'rxjs';
+import { scan } from 'rxjs';
 import { PlatformService } from '../../services/platform.service';
-
-type Subscribed<T> = T extends Observable<infer R> ? R : never;
+import { Subscribed } from '../../utils/utility-types';
 
 @Component({
   selector: 'ycl-timeline',
