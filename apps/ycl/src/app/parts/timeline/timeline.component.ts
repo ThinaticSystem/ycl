@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, scan } from 'rxjs';
-import { ContentService } from '../../services/content.service';
+import { PlatformService } from '../../services/platform.service';
 
 type Subscribed<T> = T extends Observable<infer R> ? R : never;
 
@@ -14,16 +14,16 @@ type Subscribed<T> = T extends Observable<infer R> ? R : never;
 })
 export default class TimelineComponent {
 
-  public okotoba$ = this.content
-    .okotoba$('mock')
+  public okotoba$ = this.platform
+    .okotoba$('Mock')
     .pipe(
       scan(
         (prev, now) => [...prev, now],
-        [] as Subscribed<ReturnType<typeof this.content.okotoba$>>[]
+        [] as Subscribed<ReturnType<typeof this.platform.okotoba$>>[]
       ),
     );
 
-  constructor(private content: ContentService) {}
+  constructor(private platform: PlatformService) {}
 
   public htmlFuncs = {
     object: {
@@ -31,7 +31,7 @@ export default class TimelineComponent {
     },
     converters: {
       classifyReactsByEmoji: (
-        reacts: Subscribed<ReturnType<typeof this.content.okotoba$>>['reacts']
+        reacts: Subscribed<ReturnType<typeof this.platform.okotoba$>>['reacts']
       ) => {
         const temp: {
           normal: typeof reacts;

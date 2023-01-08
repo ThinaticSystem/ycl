@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PushService } from '../../services/push.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
   selector: 'ycl-poster',
@@ -13,13 +13,13 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 export default class PosterComponent {
   text = new FormControl('');
 
-  constructor(private push: PushService) {}
+  constructor(private platform: PlatformService) {}
 
   post() {
     if (this.text.value === null) {
       return;
     }
 
-    this.push.post('mock', this.text.value);
+    this.platform.post('Mock', this.text.value);
   }
 }

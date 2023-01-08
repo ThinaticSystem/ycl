@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { interval, map } from 'rxjs';
-import { PlatForm } from './platform';
+import { Platform } from './platform';
 
 // リトライ・死活監視はこの層で行う
 
 @Injectable({
   providedIn: 'root',
 })
-export class MockService implements PlatForm {
+export class MockService implements Platform {
   constructor() {
     faker.setLocale('ja');
   }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { PlatForm } from './platform';
+import { Platform } from './platform';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MisskeyService implements PlatForm {
+export class MisskeyService implements Platform {
   okotoba$() {
     return of<any>(null); // TODO
   }
