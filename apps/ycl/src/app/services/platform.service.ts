@@ -4,7 +4,7 @@ import { MisskeyService } from './platforms/misskey.service';
 import { MockService } from './platforms/mock.service';
 import { Observable } from 'rxjs';
 
-type PlatformName = 'Misskey' | 'Mock';
+export type PlatformName = 'Misskey' | 'Mock';
 
 @Injectable({
   providedIn: 'root',
